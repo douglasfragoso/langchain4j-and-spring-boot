@@ -12,11 +12,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.langchain4j.ia.lowlevel.DeepSeek.DeepSeekChatModelController;
+import com.langchain4j.ia.lowlevel.DeepSeek.DeepSeekConfig;
+
 import dev.langchain4j.model.chat.ChatModel;
 
-@WebMvcTest(ChatModelController.class)
-@Import(LangChain4jConfig.class)
-class ChatModelControllerTest {
+@WebMvcTest(DeepSeekChatModelController.class)
+@Import(DeepSeekConfig.class)
+class DeepSeekChatModelControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -31,7 +34,7 @@ class ChatModelControllerTest {
         when(chatModel.chat("Hello")).thenReturn(expectedResponse);
 
         // Act & Assert
-        mockMvc.perform(get("/model"))
+        mockMvc.perform(get("/deepseek/model"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(expectedResponse));
 
@@ -46,7 +49,7 @@ class ChatModelControllerTest {
         when(chatModel.chat(message)).thenReturn(expectedResponse);
 
         // Act & Assert
-        mockMvc.perform(get("/model")
+        mockMvc.perform(get("/deepseek/model")
                         .param("message", message))
                 .andExpect(status().isOk())
                 .andExpect(content().string(expectedResponse));
@@ -68,7 +71,7 @@ class ChatModelControllerTest {
                 """.formatted(requestMessage);
 
         // Act & Assert
-        mockMvc.perform(post("/model")
+        mockMvc.perform(post("/deepseek/model")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestJson))
                 .andExpect(status().isOk())
@@ -91,7 +94,7 @@ class ChatModelControllerTest {
                 """;
 
         // Act & Assert
-        mockMvc.perform(post("/model")
+        mockMvc.perform(post("/deepseek/model")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestJson))
                 .andExpect(status().isOk())

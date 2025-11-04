@@ -1,15 +1,16 @@
-package com.langchain4j.ia.lowlevel;
+package com.langchain4j.ia.lowlevel.Ollama;
+
+import java.time.Duration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import dev.langchain4j.http.client.jdk.JdkHttpClientBuilderFactory;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
-import java.time.Duration;
-
 @Configuration
-public class LangChain4jConfig {
+public class OllamaConfig {
 
     @Value("${langchain4j.ollama.chat-model.base-url}")
     private String baseUrl;
@@ -23,13 +24,14 @@ public class LangChain4jConfig {
     @Value("${langchain4j.ollama.chat-model.timeout}")
     private Duration timeout;
 
-    @Bean
+    @Bean("ollamaChatModel")
     public OllamaChatModel ollamaChatModel() {
         return OllamaChatModel.builder()
                 .baseUrl(baseUrl)
                 .modelName(modelName)
                 .temperature(temperature)
                 .timeout(timeout)
+                .httpClientBuilder(new JdkHttpClientBuilderFactory().create())
                 .build();
     }
 }
