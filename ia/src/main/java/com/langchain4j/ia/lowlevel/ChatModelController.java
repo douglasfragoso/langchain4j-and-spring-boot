@@ -1,5 +1,6 @@
 package com.langchain4j.ia.lowlevel;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,11 +12,8 @@ import dev.langchain4j.model.chat.ChatModel;
 @RestController
 public class ChatModelController {
     
-    private final ChatModel chatModel;
-
-    public ChatModelController(ChatModel chatModel) {
-        this.chatModel = chatModel;
-    }
+    @Autowired
+    private ChatModel chatModel;
 
     @GetMapping("/model")
     public String model(@RequestParam(value = "message", defaultValue = "Hello") String message) {

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.0-SNAPSHOT</version>
+		<version>3.5.7</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.langchain4j</groupId>
@@ -80,10 +80,15 @@
 	</dependencies>
 
 	<build>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
