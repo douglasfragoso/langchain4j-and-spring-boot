@@ -6,3 +6,5 @@ Teste:
      curl -X POST http://localhost:8080/ollama/model -H "Content-Type: application/json" -d "{\"message\": \"Quais são os principais pontos turísticos do Recife Antigo?\"}"
 
      curl -X POST http://localhost:8080/deepseek/model -H "Content-Type: application/json" -d "{\"message\": \"Quais são os principais pontos turísticos do Recife Antigo?\"}"
+
+     curl -X POST http://localhost:8080/gemini/model -H "Content-Type: application/json" -d "{\"message\": \"Quais são os principais pontos turísticos do Recife Antigo?\"}"  

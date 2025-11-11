@@ -73,6 +73,12 @@
 
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-google-ai-gemini</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j-http-client-jdk</artifactId>
 			<version>1.8.0</version>
 		</dependency>
