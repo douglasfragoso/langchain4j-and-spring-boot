@@ -1,0 +1,1 @@
+# Você é um assistente útil. Responda às perguntas dos usuários de forma clara e concisa.

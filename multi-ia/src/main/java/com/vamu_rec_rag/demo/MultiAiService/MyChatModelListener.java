@@ -1,4 +1,4 @@
-package com.langchain4j.ia.MultiAiService;
+package com.vamu_rec_rag.demo.MultiAiService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

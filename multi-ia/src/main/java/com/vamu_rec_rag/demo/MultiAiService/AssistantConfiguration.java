@@ -1,4 +1,4 @@
-package com.langchain4j.ia.MultiAiService;
+package com.vamu_rec_rag.demo.MultiAiService;
 
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.*;
 
@@ -28,9 +28,16 @@ public class AssistantConfiguration {
         return new MyChatModelListener();
     }
 
+    // CORRIGIR: Criar um ContentRetriever dummy para teste
+    @Bean
+    ContentRetriever contentRetriever() {
+        // Retriever vazio para testes - você pode substituir por um real depois
+        return query -> java.util.Collections.emptyList();
+    }
+
     @Bean
     public StreamingAssistant deepSeekAssistant(
-            @Qualifier("deepseekStreamingChatModel") StreamingChatModel deepseekStreamingChatModel,
+            @Qualifier("deepseekStreamingChatModel") StreamingChatModel deepseekStreamingChatModel, // CORRIGIDO
             ContentRetriever contentRetriever,
             ChatMemory chatMemory
     ) {
@@ -43,7 +50,7 @@ public class AssistantConfiguration {
 
     @Bean
     public StreamingAssistant geminiAssistant(
-            @Qualifier("geminiStreamingChatModel") StreamingChatModel geminiStreamingChatModel,
+            @Qualifier("geminiStreamingChatModel") StreamingChatModel geminiStreamingChatModel, // CORRIGIDO
             ContentRetriever contentRetriever,
             ChatMemory chatMemory
     ) {
@@ -55,8 +62,8 @@ public class AssistantConfiguration {
     }
 
     @Bean
-    public StreamingAssistant streamingRagAssistant(
-            @Qualifier("ollamaCChatModel") StreamingChatModel ollamaStreamingChatModel,
+    public StreamingAssistant ollamaAssistant( // MUDAR NOME do método
+            @Qualifier("ollamaChatModel") StreamingChatModel ollamaStreamingChatModel, // CORRIGIDO
             ContentRetriever contentRetriever,
             ChatMemory chatMemory
     ) {
