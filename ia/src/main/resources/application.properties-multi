@@ -1,0 +1,22 @@
+
+# DeepSeek Configuration (usa OpenAI-compatible API)
+langchain4j.open-ai.deepseek.streaming-chat-model.api-key=${DEEPSEEK_API_KEY}
+langchain4j.open-ai.deepseek.streaming-chat-model.base-url=https://api.deepseek.com
+langchain4j.open-ai.deepseek.streaming-chat-model.model-name=deepseek-chat
+langchain4j.open-ai.deepseek.streaming-chat-model.temperature=0.7
+
+# Gemini Configuration
+langchain4j.google-ai-gemini.streaming-chat-model.api-key=${GEMINI_API_KEY}
+langchain4j.google-ai-gemini.streaming-chat-model.model-name=gemini-1.5-flash
+langchain4j.google-ai-gemini.streaming-chat-model.temperature=0.7
+
+# Ollama Configuration
+langchain4j.ollama.streaming-chat-model.base-url=http://localhost:11434
+langchain4j.ollama.streaming-chat-model.model-name=llama3.1:8b
+langchain4j.ollama.streaming-chat-model.temperature=0.7
+
+# Logging (opcional)
+#langchain4j.open-ai.deepseek.streaming-chat-model.log-requests=true
+#langchain4j.open-ai.deepseek.streaming-chat-model.log-responses=true
+logging.level.com.langchain4j.ia.MultiAiService=DEBUG
+logging.level.dev.langchain4j=INFO
