@@ -1,11 +1,13 @@
-package com.vamu_rec_rag.demo.MultiAiService;
+package com.vamu_rec_rag.demo.MultiAiService.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import dev.langchain4j.http.client.jdk.JdkHttpClientBuilderFactory;
 import dev.langchain4j.model.chat.StreamingChatModel;
+import dev.langchain4j.model.chat.listener.ChatModelListener;
 import dev.langchain4j.model.googleai.GoogleAiGeminiStreamingChatModel;
 import dev.langchain4j.model.ollama.OllamaStreamingChatModel;
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
@@ -13,7 +15,6 @@ import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
 @Configuration
 public class ModelConfiguration {
 
-    // Use valores default para evitar erro se propriedade não existir
     @Value("${langchain4j.open-ai.deepseek.streaming-chat-model.api-key}")
     private String deepseekApiKey;
 
@@ -31,6 +32,9 @@ public class ModelConfiguration {
 
     @Value("${langchain4j.ollama.streaming-chat-model.model-name}")
     private String ollamaModelName;
+    
+    @Autowired
+    private ChatModelListener chatModelListener;
 
     @Bean
     public StreamingChatModel deepseekStreamingChatModel() {
@@ -42,6 +46,7 @@ public class ModelConfiguration {
                 .logRequests(true)
                 .logResponses(true)
                 .httpClientBuilder(new JdkHttpClientBuilderFactory().create())
+                .listeners(java.util.List.of(chatModelListener))
                 .build();
     }
 
@@ -54,11 +59,12 @@ public class ModelConfiguration {
                 .logRequests(true)
                 .logResponses(true)
                 .httpClientBuilder(new JdkHttpClientBuilderFactory().create())
+                .listeners(java.util.List.of(chatModelListener))
                 .build();
     }
 
     @Bean
-    public StreamingChatModel ollamaChatModel() {
+    public StreamingChatModel ollamaStreamingChatModel() {
         return OllamaStreamingChatModel.builder()
                 .baseUrl(ollamaBaseUrl)
                 .modelName(ollamaModelName)
@@ -66,6 +72,7 @@ public class ModelConfiguration {
                 .logRequests(true)
                 .logResponses(true)
                 .httpClientBuilder(new JdkHttpClientBuilderFactory().create())
+                .listeners(java.util.List.of(chatModelListener))
                 .build();
     }
 }
